@@ -5,12 +5,18 @@ public class Queen extends Piece {
     private String type = "Queen";
     Bishop bishop;
 
+    private char letter = 'Q';
+
     public Queen(boolean white) {
         super(white);
     }
 
     public String getType() {
         return this.type;
+    }
+
+    public char getLetter() {
+        return this.letter;
     }
 
     @Override

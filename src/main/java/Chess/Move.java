@@ -7,6 +7,9 @@ public class Move {
     private Piece pieceMoved;
     private Piece pieceKilled;
 
+    public Piece getPieceMoved() {
+        return this.pieceMoved;
+    }
 
     public Spot getStart() {
         return this.start;

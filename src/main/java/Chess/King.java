@@ -5,6 +5,8 @@ public class King extends Piece {
     private Board board;
 
     private String type = "King";
+
+    private char letter = 'K';
     private boolean isCastlingValid = true;
     private boolean isCastlingDone = false;
     private boolean isKingInCheck = false;
@@ -15,6 +17,10 @@ public class King extends Piece {
 
     public String getType() {
         return this.type;
+    }
+
+    public char getLetter() {
+        return this.letter;
     }
 
     public boolean isCastlingValid() {

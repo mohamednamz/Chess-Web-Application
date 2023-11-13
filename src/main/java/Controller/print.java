@@ -18,7 +18,7 @@ public class print implements Route {
     public Object handle(Request request, Response response) throws Exception {
 
         Board board = new Board();
-
-        return pageRenderer.renderNewBoard();
+return "hello";
+        //return pageRenderer.renderNewBoard();
     }
 }

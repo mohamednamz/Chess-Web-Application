@@ -21,6 +21,14 @@ public class Game {
         this.check = check;
     }
 
+    public Move getMostRecentMove() {
+        return this.mostRecentMove;
+    }
+
+    public List<Move> getMovesPlayed() {
+        return this.movesPlayed;
+    }
+
     public Move getMostRecentWhiteKingMove() {
         return this.mostRecentWhiteKingMove;
     }
@@ -49,6 +57,16 @@ public class Game {
         return this.gameOver;
     }
 
+    public char[][] virtualBoard = {
+            {'C', 'k', 'B', 'Q', 'K', 'B', 'k', 'C'},
+            {'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+            {'?', '?', '?', '?', '?', '?', '?', '?'},
+            {'?', '?', '?', '?', '?', '?', '?', '?'},
+            {'?', '?', '?', '?', '?', '?', '?', '?'},
+            {'?', '?', '?', '?', '?', '?', '?', '?'},
+            {'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+            {'C', 'k', 'B', 'Q', 'K', 'B', 'k', 'C'},
+    };
 
     public void initialiseGame(Player p1, Player p2) {
         players = new Player[2];
@@ -67,6 +85,8 @@ public class Game {
 
         if (p1.isWhiteSide()) {
             this.currentTurn = p1;
+            mostRecentWhiteKingMove = new Move(p1, board.getWhiteKingStart(), board.getWhiteKingEnd());
+            mostRecentBlackKingMove = new Move(p2, board.getBlackKingStart(), board.getBlackKingEnd());
         } else {
             this.currentTurn = p2;
         }
@@ -231,6 +251,28 @@ public class Game {
             }
         }
         mostRecentMove = move;
+
+        for (int i = 0; i < virtualBoard.length; i++) {
+            if (i == move.getStart().getX()) {
+                for (int j = 0; j < virtualBoard[i].length; j++) {
+                    if (j == move.getStart().getY()) {
+                        virtualBoard[i][j] = '?';
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < virtualBoard.length; i++) {
+            if (i == move.getEnd().getX()) {
+                for (int j = 0; j < virtualBoard[i].length; j++) {
+                    if (j == move.getEnd().getY()) {
+                        virtualBoard[i][j] = sourcePiece.getLetter();
+                    }
+                }
+            }
+        }
+
+
 
         return true;
 
@@ -445,31 +487,45 @@ public class Game {
         }
         return false;
     }
+
     private int checkPawn(Move move) {
 
         int counter = 0;
 
+        Piece possibleMoveOne = null;
+        Piece possibleMoveTwo = null;
+
         if (move.getEnd().getPiece() != null) {
             if (move.getEnd().getPiece().isWhite()) {
 
-                Piece possibleMoveOne = board.boxes[move.getEnd().getX() + 1][move.getEnd().getY() + 1].getPiece();
-                Piece possibleMoveTwo = board.boxes[move.getEnd().getX() + 1][move.getEnd().getY() - 1].getPiece();
-
-                if (possibleMoveOne instanceof Pawn) {
-                    counter++;
+                if (board.boxes[move.getEnd().getX() + 1][move.getEnd().getY() + 1] != null) {
+                    possibleMoveOne = board.boxes[move.getEnd().getX() + 1][move.getEnd().getY() + 1].getPiece();
                 }
-                if (possibleMoveTwo instanceof Pawn) {
-                    counter++;
+                if (board.boxes[move.getEnd().getX() + 1][move.getEnd().getY() - 1] != null) {
+                    possibleMoveTwo = board.boxes[move.getEnd().getX() + 1][move.getEnd().getY() - 1].getPiece();
+                }
+                if (possibleMoveOne != null && possibleMoveTwo != null) {
+                    if (possibleMoveOne instanceof Pawn) {
+                        counter++;
+                    }
+                    if (possibleMoveTwo instanceof Pawn) {
+                        counter++;
+                    }
                 }
             } else {
-                Piece possibleMoveOne = board.boxes[move.getEnd().getX() - 1][move.getEnd().getY() + 1].getPiece();
-                Piece possibleMoveTwo = board.boxes[move.getEnd().getX() - 1][move.getEnd().getY() - 1].getPiece();
-
-                if (possibleMoveOne instanceof Pawn) {
-                    counter++;
+                if (board.boxes[move.getEnd().getX() + 1][move.getEnd().getY() + 1] != null) {
+                    possibleMoveOne = board.boxes[move.getEnd().getX() + 1][move.getEnd().getY() + 1].getPiece();
                 }
-                if (possibleMoveTwo instanceof Pawn) {
-                    counter++;
+                if (board.boxes[move.getEnd().getX() + 1][move.getEnd().getY() - 1] != null) {
+                    possibleMoveTwo = board.boxes[move.getEnd().getX() + 1][move.getEnd().getY() - 1].getPiece();
+                }
+                if (possibleMoveOne != null && possibleMoveTwo != null) {
+                    if (possibleMoveOne instanceof Pawn) {
+                        counter++;
+                    }
+                    if (possibleMoveTwo instanceof Pawn) {
+                        counter++;
+                    }
                 }
             }
         }

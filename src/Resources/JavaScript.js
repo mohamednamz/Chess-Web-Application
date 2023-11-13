@@ -1,19 +1,37 @@
 
-async function myFunction(button) {
 
+setInterval(refresh,10000);
 
-console.log(button.getAttribute("id"));
+async function refresh() {
 
-var xCo = button.getAttribute("data-x");
-var yCo = button.getAttribute("data-y");
+   var response = await fetch("/render");
 
-pieceSelected = {x : xCo , y : yCo};
-console.log(pieceSelected);
+   document.getElementById("board").innerHTML = await response.text();
 
-
-
+   console.log("boy");
 
 }
+
+var boxSelected;
+
+async function myFunction(button) {
+
+    console.log(button.getAttribute("id"));
+
+    var xCo = button.getAttribute("data-x");
+    var yCo = button.getAttribute("data-y");
+
+    boxSelected = {x : xCo , y : yCo};
+    console.log(boxSelected);
+
+    var url = `/makeMove?x=${xCo}&y=${yCo}`
+
+    var response = await fetch(url);
+
+    document.getElementById("board").innerHTML = await response.text();
+}
+
+
 
 
 

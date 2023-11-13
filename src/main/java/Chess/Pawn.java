@@ -8,8 +8,14 @@ public class Pawn extends Piece {
 
     private String type = "Pawn";
 
+    private char letter = 'P';
+
     public String getType() {
         return this.type;
+    }
+
+    public char getLetter() {
+        return this.letter;
     }
 
     public boolean canMove(Board board, Spot start, Spot end) {

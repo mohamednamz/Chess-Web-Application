@@ -1,7 +1,4 @@
-import Chess.Board;
-import Chess.Player;
-import Chess.PlayerInterface;
-import Chess.Server;
+import Chess.*;
 import Controller.*;
 import html.PageRenderer;
 
@@ -47,15 +44,16 @@ public class Main {
         playerInterface.addPlayer("umar");
 
         PageRenderer pageRenderer = new PageRenderer();
-        LobbyController lobbyController = new LobbyController(playerInterface,pageRenderer);
-        MainPageController mainPageController = new MainPageController(playerInterface,pageRenderer, new ListOfRoutes());
+        LobbyController lobbyController = new LobbyController(playerInterface, pageRenderer);
+        MainPageController mainPageController = new MainPageController(playerInterface, pageRenderer, new ListOfRoutes());
+        MakeMoveController makeMoveController = new MakeMoveController(playerInterface,pageRenderer,server);
 
         get("/Lobby", lobbyController);
 
         get("/print", new print(pageRenderer));
-        get("/Login", new LoginController(playerInterface,mainPageController));
-        get("/Login/JoinGame", new JoinGameController(playerInterface, pageRenderer,server));
-
-
+        get("/Login", new LoginController(playerInterface, mainPageController));
+        get("/Login/JoinGame", new JoinGameController(playerInterface, pageRenderer, server));
+        get("/makeMove", makeMoveController);
+        get("/render", new refreshBoardController(playerInterface,server,pageRenderer));
     }
 }

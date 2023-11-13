@@ -7,8 +7,18 @@ public class Piece {
 
     private String type;
 
+    public char letter;
+
     public String getType() {
         return this.type;
+    }
+
+    public char getLetter() {
+        return this.letter;
+    }
+
+    public void setLetter(char letter) {
+        this.letter = letter;
     }
 
     public boolean isKilled() {

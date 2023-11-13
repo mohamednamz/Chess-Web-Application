@@ -63,5 +63,19 @@ public class Board {
 
     }
 
+    public Spot getWhiteKingStart() {
+        return boxes[0][4];
+    }
+    public Spot getBlackKingStart() {
+        return boxes[7][4];
+    }
+
+    public Spot getWhiteKingEnd() {
+        return boxes[0][4];
+    }
+    public Spot getBlackKingEnd() {
+        return boxes[7][4];
+    }
+
 
 }

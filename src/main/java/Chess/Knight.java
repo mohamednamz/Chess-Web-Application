@@ -8,8 +8,14 @@ public class Knight extends Piece {
 
     private String type = "Knight";
 
+    private char letter = 'k';
+
     public String getType() {
         return this.type;
+    }
+
+    public char getLetter() {
+        return this.letter;
     }
 
     @Override

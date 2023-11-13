@@ -1,16 +1,29 @@
 package html;
 
 import Chess.Board;
+import Chess.InitialiseGame;
+import Chess.Piece;
 import Controller.Routes;
 
 import java.util.List;
 
 public class PageRenderer {
 
+    public char[][] virtualBoard = {
+            {'C', 'k', 'B', 'Q', 'K', 'B', 'k', 'C'},
+            {'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+            {'?', '?', '?', '?', '?', '?', '?', '?'},
+            {'?', '?', '?', '?', '?', '?', '?', '?'},
+            {'?', '?', '?', '?', '?', '?', '?', '?'},
+            {'?', '?', '?', '?', '?', '?', '?', '?'},
+            {'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+            {'C', 'k', 'B', 'Q', 'K', 'B', 'k', 'C'},
+    };
+
     public static String BOARD = """
 
-                     <script src="/JavaScript.js"></script>
-                   </head>
+                    
+                   
             <div id="board">
             <div>
             <button>
@@ -156,14 +169,14 @@ public class PageRenderer {
             <button>
                 <type="button" id="77", data-x="7", data-y="7" onclick="myFunction(this)">[<INSERT77>]</button>
             </div>
-                        
+                        <script src="/JavaScript.js"></script>
                    
             </div>""";
 
     public static String NEWBOARD = """
 
-                     <script src="/JavaScript.js"></script>
-                   </head>
+                     
+                 
             <div id="board">
             <div>
             <button>
@@ -309,7 +322,7 @@ public class PageRenderer {
             <button>
                 <type="button" id="77", data-x="7", data-y="7" onclick="myFunction(this)">[<INSERT77>]</button>
             </div>
-                        
+                        <script src="/JavaScript.js"></script>
                    
             </div>""";
 
@@ -360,27 +373,66 @@ public class PageRenderer {
             "</html>";
 
 
-    public String renderNewBoard() {
+    public String renderNewBoard(InitialiseGame game) {
 
-        String[] pieces = {"C", "k", "B", "Q", "K", "B", "k", "C"};
+        char[][] board = game.getBoard();
+
+        BOARD = NEWBOARD;
 
         String renderBoard = BOARD;
 
-        for (int i = 0; i <= 7; i++) {
-            for (int j = 0; j <= 7; j++) {
-
-                if (i == 0 || i == 7) {
-                    renderBoard = BOARD.replace("<INSERT" + i + j + ">", pieces[j]);
-                    BOARD = renderBoard;
-                } else if (i == 1 || i == 6) {
-                    renderBoard = BOARD.replace("<INSERT" + i + j + ">", "P");
-                    BOARD = renderBoard;
-                } else {
-                    renderBoard = BOARD.replace("<INSERT" + i + j + ">", "--");
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                if (board[i][j] != ' ') {
+                    String object = String.valueOf(board[i][j]);
+                    virtualBoard[i][j] = board[i][j];
+                    renderBoard = BOARD.replace("<INSERT" + i + j + ">", object);
                     BOARD = renderBoard;
                 }
             }
         }
+
+        game.setStartX(10);
+        game.setStartY(10);
+
+        BOARD = renderBoard;
+        return renderBoard;
+    }
+
+    public String renderBoard() {
+        return BOARD;
+    }
+
+    public String makeMove(InitialiseGame game) {
+
+        char[][] board = game.getBoard();
+
+        BOARD = NEWBOARD;
+
+        String renderBoard = BOARD;
+
+        //String piece = String.valueOf(game.getMostRecentMove().getLetter());
+
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; i++) {
+                if (board[i][j] != ' ') {
+                    String object = String.valueOf(board[i][j]);
+                    virtualBoard[i][j] = board[i][j];
+                    renderBoard = BOARD.replace("<INSERT" + i + j + ">", object);
+                    BOARD = renderBoard;
+                }
+            }
+        }
+
+//        renderBoard = BOARD.replace("<INSERT" + startX + startY + ">", " ");
+//        BOARD = renderBoard;
+//
+//        renderBoard = BOARD.replace("<INSERT" + endX + endY + ">", piece);
+//        BOARD = renderBoard;
+
+        game.setStartX(10);
+        game.setStartY(10);
+
         BOARD = renderBoard;
         return BOARD;
     }

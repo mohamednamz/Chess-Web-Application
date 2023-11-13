@@ -8,8 +8,14 @@ public class Castle extends Piece {
 
     private String type = "Castle";
 
+    private char letter = 'C';
+
     public String getType() {
         return this.type;
+    }
+
+    public char getLetter() {
+        return this.letter;
     }
 
     @Override
