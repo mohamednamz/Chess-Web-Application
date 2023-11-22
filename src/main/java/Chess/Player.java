@@ -2,9 +2,9 @@ package Chess;
 
 public class Player {
 
-    public boolean winner;
+    public boolean winner = false;
     public String name;
-    public boolean isInGame;
+    public boolean isInGame = false;
     public int numberOfQuits;
 
     public int userId;

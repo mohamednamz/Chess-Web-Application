@@ -3,9 +3,7 @@ package Chess;
 public class King extends Piece {
 
     private Board board;
-
     private String type = "King";
-
     private char letter = 'K';
     private boolean isCastlingValid = true;
     private boolean isCastlingDone = false;

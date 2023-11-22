@@ -49,7 +49,7 @@ public class Server {
             playerQueue.remove(0);
             playerQueue.dequeue();
 
-            game.initialiseGame(game.playerOne,game.playerTwo);
+            game.initialiseGame(game.playerOne, game.playerTwo);
 
             return game;
         }
@@ -102,26 +102,40 @@ public class Server {
         Player opponent = new Player();
 
         for (int i = 0; i < listOfGames.size(); i++) {
-            if (listOfGames.get(i).playerOne == player || listOfGames.get(i).playerTwo == player) {
-                player.isInGame = false;
-                player.numberOfQuits++;
-                if (player == listOfGames.get(i).playerOne) {
-                    opponent = listOfGames.get(i).playerTwo;
-                    listOfGames.get(i).playerOne = null;
-                    player.winner = false;
-                } else {
-                    opponent = listOfGames.get(i).playerOne;
-                    player.winner = false;
-                    listOfGames.get(i).playerTwo = null;
-                }
-
-                if (opponent == null) {
-                    listOfGames.remove(listOfGames.get(i));
-                }
-                break;
+            if (listOfGames.get(i).playerOne == player) {
+                opponent = listOfGames.get(i).playerTwo;
+            } else {
+                opponent = listOfGames.get(i).playerOne;
             }
-        }
+            player.isInGame = false;
+            opponent.isInGame = false;
+            opponent.winner = true;
+            getGame(player).SetGameOver(true);
+            getGame(opponent).SetGameOver(true);
+            listOfGames.remove(listOfGames.get(i));
 
+
+            //player.numberOfQuits++;
+//                if (player == listOfGames.get(i).playerOne) {
+//                    opponent = listOfGames.get(i).playerTwo;
+//                    //player.winner = false;
+//                    getGame(player).SetGameOver(true);
+//                    getGame(opponent).SetGameOver(true);
+//                    listOfGames.get(i).playerOne = null;
+//                    listOfGames.get(i).playerTwo = null;
+//                    opponent.winner = true;
+//                } else {
+//                    opponent = listOfGames.get(i).playerOne;
+//                    getGame(player).SetGameOver(true);
+//                    player.winner = true;
+//                    listOfGames.get(i).playerTwo = null;
+//                }
+//
+//                if (opponent == null) {
+//                    listOfGames.remove(listOfGames.get(i));
+//                }
+            break;
+        }
         return player;
     }
 

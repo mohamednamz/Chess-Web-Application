@@ -3,6 +3,7 @@ package html;
 import Chess.Board;
 import Chess.InitialiseGame;
 import Chess.Piece;
+import Chess.Player;
 import Controller.Routes;
 
 import java.util.List;
@@ -22,307 +23,309 @@ public class PageRenderer {
 
     public static String BOARD = """
 
-                    
+                    <script src="/JavaScript.js"></script>
                    
             <div id="board">
             <div>
             <button>
-                <type="button" id="00", data-x="0", data-y="0" onclick="myFunction(this)">[<INSERT00>]</button>
+                <type="button" id="00", data-x="7", data-y="0" onclick="myFunction(this)">[<INSERT70>]</button>
             <button>
-                <type="button" id="01", data-x="0", data-y="1" onclick="myFunction(this)">[<INSERT01>]</button>
+                <type="button" id="77", data-x="7", data-y="1" onclick="myFunction(this)">[<INSERT71>]</button>
             <button>
-                <type="button" id="02", data-x="0", data-y="2" onclick="myFunction(this)">[<INSERT02>]</button>
+                <type="button" id="76", data-x="7", data-y="2" onclick="myFunction(this)">[<INSERT72>]</button>
             <button>
-                <type="button" id="03", data-x="0", data-y="3" onclick="myFunction(this)">[<INSERT03>]</button>
-            <button>
-                <type="button" id="04", data-x="0", data-y="4" onclick="myFunction(this)">[<INSERT04>]</button>
-            <button>
-                <type="button" id="05", data-x="0", data-y="5" onclick="myFunction(this)">[<INSERT05>]</button>                    
-            <button>
-                <type="button" id="06", data-x="0", data-y="6" onclick="myFunction(this)">[<INSERT06>]</button>
-            <button>
-                <type="button" id="07", data-x="0", data-y="7" onclick="myFunction(this)">[<INSERT07>]</button>
-            </div>
-            <div>
-            <button>
-                <type="button" id="10", data-x="1", data-y="0" onclick="myFunction(this)">[<INSERT10>]</button>
-            <button>
-                <type="button" id="11", data-x="1", data-y="1" onclick="myFunction(this)">[<INSERT11>]</button>
-            <button>
-                <type="button" id="12", data-x="1", data-y="2" onclick="myFunction(this)">[<INSERT12>]</button>        
-            <button>
-                <type="button" id="13", data-x="1", data-y="3" onclick="myFunction(this)">[<INSERT13>]</button>
-            <button>
-                <type="button" id="14", data-x="1", data-y="4" onclick="myFunction(this)">[<INSERT14>]</button>
-            <button>
-                <type="button" id="15", data-x="1", data-y="5" onclick="myFunction(this)">[<INSERT15>]</button> 
-            <button>
-                <type="button" id="16", data-x="1", data-y="6" onclick="myFunction(this)">[<INSERT16>]</button>
-            <button>
-                <type="button" id="17", data-x="1", data-y="7" onclick="myFunction(this)">[<INSERT17>]</button> 
-            </div>
-            <div>
-            <button>
-                <type="button" id="20", data-x="2", data-y="0" onclick="myFunction(this)">[<INSERT20>]</button>
-            <button>
-                <type="button" id="21", data-x="2", data-y="1" onclick="myFunction(this)">[<INSERT21>]</button>
-            <button>
-                <type="button" id="22", data-x="2", data-y="2" onclick="myFunction(this)">[<INSERT22>]</button>        
-            <button>
-                <type="button" id="23", data-x="2", data-y="3" onclick="myFunction(this)">[<INSERT23>]</button>
-            <button>
-                <type="button" id="24", data-x="2", data-y="4" onclick="myFunction(this)">[<INSERT24>]</button>
-            <button>
-                <type="button" id="25", data-x="2", data-y="5" onclick="myFunction(this)">[<INSERT25>]</button> 
-            <button>
-                <type="button" id="26", data-x="2", data-y="6" onclick="myFunction(this)">[<INSERT26>]</button>
-            <button>
-                <type="button" id="27", data-x="2", data-y="7" onclick="myFunction(this)">[<INSERT27>]</button>
-            </div>
-             <div>
-            <button>
-                <type="button" id="30", data-x="3", data-y="0" onclick="myFunction(this)">[<INSERT30>]</button>
-            <button>
-                <type="button" id="31", data-x="3", data-y="1" onclick="myFunction(this)">[<INSERT31>]</button>
-            <button>
-                <type="button" id="32", data-x="3", data-y="2" onclick="myFunction(this)">[<INSERT32>]</button>        
-            <button>
-                <type="button" id="33", data-x="3", data-y="3" onclick="myFunction(this)">[<INSERT33>]</button>
-            <button>
-                <type="button" id="34", data-x="3", data-y="4" onclick="myFunction(this)">[<INSERT34>]</button>
-            <button>
-                <type="button" id="35", data-x="3", data-y="5" onclick="myFunction(this)">[<INSERT35>]</button> 
-            <button>
-                <type="button" id="36", data-x="3", data-y="6" onclick="myFunction(this)">[<INSERT36>]</button>
-            <button>
-                <type="button" id="37", data-x="3", data-y="7" onclick="myFunction(this)">[<INSERT37>]</button>
-            </div>
-             <div>
-            <button>
-                <type="button" id="40", data-x="4", data-y="0" onclick="myFunction(this)">[<INSERT40>]</button>
-            <button>
-                <type="button" id="41", data-x="4", data-y="1" onclick="myFunction(this)">[<INSERT41>]</button>
-            <button>
-                <type="button" id="42", data-x="4", data-y="2" onclick="myFunction(this)">[<INSERT42>]</button>        
-            <button>
-                <type="button" id="43", data-x="4", data-y="3" onclick="myFunction(this)">[<INSERT43>]</button>
-            <button>
-                <type="button" id="44", data-x="4", data-y="4" onclick="myFunction(this)">[<INSERT44>]</button>
-            <button>
-                <type="button" id="45", data-x="4", data-y="5" onclick="myFunction(this)">[<INSERT45>]</button> 
-            <button>
-                <type="button" id="46", data-x="4", data-y="6" onclick="myFunction(this)">[<INSERT46>]</button>
-            <button>
-                <type="button" id="47", data-x="4", data-y="7" onclick="myFunction(this)">[<INSERT47>]</button>
-            </div>
-             <div>
-            <button>
-                <type="button" id="50", data-x="5", data-y="0" onclick="myFunction(this)">[<INSERT50>]</button>
-            <button>
-                <type="button" id="51", data-x="5", data-y="1" onclick="myFunction(this)">[<INSERT51>]</button>
-            <button>
-                <type="button" id="52", data-x="5", data-y="2" onclick="myFunction(this)">[<INSERT52>]</button>        
-            <button>
-                <type="button" id="53", data-x="5", data-y="3" onclick="myFunction(this)">[<INSERT53>]</button>
-            <button>
-                <type="button" id="54", data-x="5", data-y="4" onclick="myFunction(this)">[<INSERT54>]</button>
-            <button>
-                <type="button" id="55", data-x="5", data-y="5" onclick="myFunction(this)">[<INSERT55>]</button> 
-            <button>
-                <type="button" id="56", data-x="5", data-y="6" onclick="myFunction(this)">[<INSERT56>]</button>
-            <button>
-                <type="button" id="57", data-x="5", data-y="7" onclick="myFunction(this)">[<INSERT57>]</button>
-            </div>
-             <div>
-            <button>
-                <type="button" id="60", data-x="6", data-y="0" onclick="myFunction(this)">[<INSERT60>]</button>
-            <button>
-                <type="button" id="61", data-x="6", data-y="1" onclick="myFunction(this)">[<INSERT61>]</button>
-            <button>
-                <type="button" id="62", data-x="6", data-y="2" onclick="myFunction(this)">[<INSERT62>]</button>        
-            <button>
-                <type="button" id="63", data-x="6", data-y="3" onclick="myFunction(this)">[<INSERT63>]</button>
-            <button>
-                <type="button" id="64", data-x="6", data-y="4" onclick="myFunction(this)">[<INSERT64>]</button>
-            <button>
-                <type="button" id="65", data-x="6", data-y="5" onclick="myFunction(this)">[<INSERT65>]</button> 
-            <button>
-                <type="button" id="66", data-x="6", data-y="6" onclick="myFunction(this)">[<INSERT66>]</button>
-            <button>
-                <type="button" id="67", data-x="6", data-y="7" onclick="myFunction(this)">[<INSERT67>]</button>
-            </div>
-             <div>
-            <button>
-                <type="button" id="70", data-x="7", data-y="0" onclick="myFunction(this)">[<INSERT70>]</button>
-            <button>
-                <type="button" id="71", data-x="7", data-y="1" onclick="myFunction(this)">[<INSERT71>]</button>
-            <button>
-                <type="button" id="72", data-x="7", data-y="2" onclick="myFunction(this)">[<INSERT72>]</button>        
-            <button>
-                <type="button" id="73", data-x="7", data-y="3" onclick="myFunction(this)">[<INSERT73>]</button>
+                <type="button" id="75", data-x="7", data-y="3" onclick="myFunction(this)">[<INSERT73>]</button>
             <button>
                 <type="button" id="74", data-x="7", data-y="4" onclick="myFunction(this)">[<INSERT74>]</button>
             <button>
-                <type="button" id="75", data-x="7", data-y="5" onclick="myFunction(this)">[<INSERT75>]</button> 
+                <type="button" id="73", data-x="7", data-y="5" onclick="myFunction(this)">[<INSERT75>]</button>                    
             <button>
-                <type="button" id="76", data-x="7", data-y="6" onclick="myFunction(this)">[<INSERT76>]</button>
+                <type="button" id="72", data-x="7", data-y="6" onclick="myFunction(this)">[<INSERT76>]</button>
             <button>
-                <type="button" id="77", data-x="7", data-y="7" onclick="myFunction(this)">[<INSERT77>]</button>
+                <type="button" id="71", data-x="7", data-y="7" onclick="myFunction(this)">[<INSERT77>]</button>
             </div>
-                        <script src="/JavaScript.js"></script>
+            <div>
+            <button>
+                <type="button" id="67", data-x="6", data-y="0" onclick="myFunction(this)">[<INSERT60>]</button>
+            <button>
+                <type="button" id="66", data-x="6", data-y="1" onclick="myFunction(this)">[<INSERT61>]</button>
+            <button>
+                <type="button" id="65", data-x="6", data-y="2" onclick="myFunction(this)">[<INSERT62>]</button>        
+            <button>
+                <type="button" id="64", data-x="6", data-y="3" onclick="myFunction(this)">[<INSERT63>]</button>
+            <button>
+                <type="button" id="63", data-x="6", data-y="4" onclick="myFunction(this)">[<INSERT64>]</button>
+            <button>
+                <type="button" id="62", data-x="6", data-y="5" onclick="myFunction(this)">[<INSERT65>]</button> 
+            <button>
+                <type="button" id="61", data-x="6", data-y="6" onclick="myFunction(this)">[<INSERT66>]</button>
+            <button>
+                <type="button" id="60", data-x="6", data-y="7" onclick="myFunction(this)">[<INSERT67>]</button> 
+            </div>
+            <div>
+            <button>
+                <type="button" id="57", data-x="5", data-y="0" onclick="myFunction(this)">[<INSERT50>]</button>
+            <button>
+                <type="button" id="56", data-x="5", data-y="1" onclick="myFunction(this)">[<INSERT51>]</button>
+            <button>
+                <type="button" id="55", data-x="5", data-y="2" onclick="myFunction(this)">[<INSERT52>]</button>        
+            <button>
+                <type="button" id="54", data-x="5", data-y="3" onclick="myFunction(this)">[<INSERT53>]</button>
+            <button>
+                <type="button" id="53", data-x="5", data-y="4" onclick="myFunction(this)">[<INSERT54>]</button>
+            <button>
+                <type="button" id="52", data-x="5", data-y="5" onclick="myFunction(this)">[<INSERT55>]</button> 
+            <button>
+                <type="button" id="51", data-x="5", data-y="6" onclick="myFunction(this)">[<INSERT56>]</button>
+            <button>
+                <type="button" id="50", data-x="5", data-y="7" onclick="myFunction(this)">[<INSERT57>]</button>
+            </div>
+             <div>
+            <button>
+                <type="button" id="47", data-x="4", data-y="0" onclick="myFunction(this)">[<INSERT40>]</button>
+            <button>
+                <type="button" id="46", data-x="4", data-y="1" onclick="myFunction(this)">[<INSERT41>]</button>
+            <button>
+                <type="button" id="45", data-x="4", data-y="2" onclick="myFunction(this)">[<INSERT42>]</button>        
+            <button>
+                <type="button" id="44", data-x="4", data-y="3" onclick="myFunction(this)">[<INSERT43>]</button>
+            <button>
+                <type="button" id="43", data-x="4", data-y="4" onclick="myFunction(this)">[<INSERT44>]</button>
+            <button>
+                <type="button" id="42", data-x="4", data-y="5" onclick="myFunction(this)">[<INSERT45>]</button> 
+            <button>
+                <type="button" id="41", data-x="4", data-y="6" onclick="myFunction(this)">[<INSERT46>]</button>
+            <button>
+                <type="button" id="40", data-x="4", data-y="7" onclick="myFunction(this)">[<INSERT47>]</button>
+            </div>
+             <div>
+            <button>
+                <type="button" id="37", data-x="3", data-y="0" onclick="myFunction(this)">[<INSERT30>]</button>
+            <button>
+                <type="button" id="36", data-x="3", data-y="1" onclick="myFunction(this)">[<INSERT31>]</button>
+            <button>
+                <type="button" id="35", data-x="3", data-y="2" onclick="myFunction(this)">[<INSERT32>]</button>        
+            <button>
+                <type="button" id="34", data-x="3", data-y="3" onclick="myFunction(this)">[<INSERT33>]</button>
+            <button>
+                <type="button" id="33", data-x="3", data-y="4" onclick="myFunction(this)">[<INSERT34>]</button>
+            <button>
+                <type="button" id="32", data-x="3", data-y="5" onclick="myFunction(this)">[<INSERT35>]</button> 
+            <button>
+                <type="button" id="31", data-x="3", data-y="6" onclick="myFunction(this)">[<INSERT36>]</button>
+            <button>
+                <type="button" id="30", data-x="3", data-y="7" onclick="myFunction(this)">[<INSERT37>]</button>
+            </div>
+             <div>
+            <button>
+                <type="button" id="27", data-x="2", data-y="0" onclick="myFunction(this)">[<INSERT20>]</button>
+            <button>
+                <type="button" id="26", data-x="2", data-y="1" onclick="myFunction(this)">[<INSERT21>]</button>
+            <button>
+                <type="button" id="25", data-x="2", data-y="2" onclick="myFunction(this)">[<INSERT22>]</button>        
+            <button>
+                <type="button" id="24", data-x="2", data-y="3" onclick="myFunction(this)">[<INSERT23>]</button>
+            <button>
+                <type="button" id="23", data-x="2", data-y="4" onclick="myFunction(this)">[<INSERT24>]</button>
+            <button>
+                <type="button" id="22", data-x="2", data-y="5" onclick="myFunction(this)">[<INSERT25>]</button> 
+            <button>
+                <type="button" id="21", data-x="2", data-y="6" onclick="myFunction(this)">[<INSERT26>]</button>
+            <button>
+                <type="button" id="20", data-x="2", data-y="7" onclick="myFunction(this)">[<INSERT27>]</button>
+            </div>
+             <div>
+            <button>
+                <type="button" id="17", data-x="1", data-y="0" onclick="myFunction(this)">[<INSERT10>]</button>
+            <button>
+                <type="button" id="16", data-x="1", data-y="1" onclick="myFunction(this)">[<INSERT11>]</button>
+            <button>
+                <type="button" id="15", data-x="1", data-y="2" onclick="myFunction(this)">[<INSERT12>]</button>        
+            <button>
+                <type="button" id="14", data-x="1", data-y="3" onclick="myFunction(this)">[<INSERT13>]</button>
+            <button>
+                <type="button" id="13", data-x="1", data-y="4" onclick="myFunction(this)">[<INSERT14>]</button>
+            <button>
+                <type="button" id="12", data-x="1", data-y="5" onclick="myFunction(this)">[<INSERT15>]</button> 
+            <button>
+                <type="button" id="11", data-x="1", data-y="6" onclick="myFunction(this)">[<INSERT16>]</button>
+            <button>
+                <type="button" id="10", data-x="1", data-y="7" onclick="myFunction(this)">[<INSERT17>]</button>
+            </div>
+             <div>
+            <button>
+                <type="button" id="07", data-x="0", data-y="0" onclick="myFunction(this)">[<INSERT00>]</button>
+            <button>
+                <type="button" id="06", data-x="0", data-y="1" onclick="myFunction(this)">[<INSERT01>]</button>
+            <button>
+                <type="button" id="05", data-x="0", data-y="2" onclick="myFunction(this)">[<INSERT02>]</button>        
+            <button>
+                <type="button" id="04", data-x="0", data-y="3" onclick="myFunction(this)">[<INSERT03>]</button>
+            <button>
+                <type="button" id="03", data-x="0", data-y="4" onclick="myFunction(this)">[<INSERT04>]</button>
+            <button>
+                <type="button" id="02", data-x="0", data-y="5" onclick="myFunction(this)">[<INSERT05>]</button> 
+            <button>
+                <type="button" id="01", data-x="0", data-y="6" onclick="myFunction(this)">[<INSERT06>]</button>
+            <button>
+                <type="button" id="00", data-x="0", data-y="7" onclick="myFunction(this)">[<INSERT07>]</button>
+            </div>
+                        
+                        
                    
             </div>""";
 
     public static String NEWBOARD = """
 
-                     
-                 
+                     <script src="/JavaScript.js"></script>
+                   
             <div id="board">
             <div>
             <button>
-                <type="button" id="00", data-x="0", data-y="0" onclick="myFunction(this)">[<INSERT00>]</button>
+                <type="button" id="00", data-x="7", data-y="0" onclick="myFunction(this)">[<INSERT70>]</button>
             <button>
-                <type="button" id="01", data-x="0", data-y="1" onclick="myFunction(this)">[<INSERT01>]</button>
+                <type="button" id="77", data-x="7", data-y="1" onclick="myFunction(this)">[<INSERT71>]</button>
             <button>
-                <type="button" id="02", data-x="0", data-y="2" onclick="myFunction(this)">[<INSERT02>]</button>
+                <type="button" id="76", data-x="7", data-y="2" onclick="myFunction(this)">[<INSERT72>]</button>
             <button>
-                <type="button" id="03", data-x="0", data-y="3" onclick="myFunction(this)">[<INSERT03>]</button>
-            <button>
-                <type="button" id="04", data-x="0", data-y="4" onclick="myFunction(this)">[<INSERT04>]</button>
-            <button>
-                <type="button" id="05", data-x="0", data-y="5" onclick="myFunction(this)">[<INSERT05>]</button>                    
-            <button>
-                <type="button" id="06", data-x="0", data-y="6" onclick="myFunction(this)">[<INSERT06>]</button>
-            <button>
-                <type="button" id="07", data-x="0", data-y="7" onclick="myFunction(this)">[<INSERT07>]</button>
-            </div>
-            <div>
-            <button>
-                <type="button" id="10", data-x="1", data-y="0" onclick="myFunction(this)">[<INSERT10>]</button>
-            <button>
-                <type="button" id="11", data-x="1", data-y="1" onclick="myFunction(this)">[<INSERT11>]</button>
-            <button>
-                <type="button" id="12", data-x="1", data-y="2" onclick="myFunction(this)">[<INSERT12>]</button>        
-            <button>
-                <type="button" id="13", data-x="1", data-y="3" onclick="myFunction(this)">[<INSERT13>]</button>
-            <button>
-                <type="button" id="14", data-x="1", data-y="4" onclick="myFunction(this)">[<INSERT14>]</button>
-            <button>
-                <type="button" id="15", data-x="1", data-y="5" onclick="myFunction(this)">[<INSERT15>]</button> 
-            <button>
-                <type="button" id="16", data-x="1", data-y="6" onclick="myFunction(this)">[<INSERT16>]</button>
-            <button>
-                <type="button" id="17", data-x="1", data-y="7" onclick="myFunction(this)">[<INSERT17>]</button> 
-            </div>
-            <div>
-            <button>
-                <type="button" id="20", data-x="2", data-y="0" onclick="myFunction(this)">[<INSERT20>]</button>
-            <button>
-                <type="button" id="21", data-x="2", data-y="1" onclick="myFunction(this)">[<INSERT21>]</button>
-            <button>
-                <type="button" id="22", data-x="2", data-y="2" onclick="myFunction(this)">[<INSERT22>]</button>        
-            <button>
-                <type="button" id="23", data-x="2", data-y="3" onclick="myFunction(this)">[<INSERT23>]</button>
-            <button>
-                <type="button" id="24", data-x="2", data-y="4" onclick="myFunction(this)">[<INSERT24>]</button>
-            <button>
-                <type="button" id="25", data-x="2", data-y="5" onclick="myFunction(this)">[<INSERT25>]</button> 
-            <button>
-                <type="button" id="26", data-x="2", data-y="6" onclick="myFunction(this)">[<INSERT26>]</button>
-            <button>
-                <type="button" id="27", data-x="2", data-y="7" onclick="myFunction(this)">[<INSERT27>]</button>
-            </div>
-             <div>
-            <button>
-                <type="button" id="30", data-x="3", data-y="0" onclick="myFunction(this)">[<INSERT30>]</button>
-            <button>
-                <type="button" id="31", data-x="3", data-y="1" onclick="myFunction(this)">[<INSERT31>]</button>
-            <button>
-                <type="button" id="32", data-x="3", data-y="2" onclick="myFunction(this)">[<INSERT32>]</button>        
-            <button>
-                <type="button" id="33", data-x="3", data-y="3" onclick="myFunction(this)">[<INSERT33>]</button>
-            <button>
-                <type="button" id="34", data-x="3", data-y="4" onclick="myFunction(this)">[<INSERT34>]</button>
-            <button>
-                <type="button" id="35", data-x="3", data-y="5" onclick="myFunction(this)">[<INSERT35>]</button> 
-            <button>
-                <type="button" id="36", data-x="3", data-y="6" onclick="myFunction(this)">[<INSERT36>]</button>
-            <button>
-                <type="button" id="37", data-x="3", data-y="7" onclick="myFunction(this)">[<INSERT37>]</button>
-            </div>
-             <div>
-            <button>
-                <type="button" id="40", data-x="4", data-y="0" onclick="myFunction(this)">[<INSERT40>]</button>
-            <button>
-                <type="button" id="41", data-x="4", data-y="1" onclick="myFunction(this)">[<INSERT41>]</button>
-            <button>
-                <type="button" id="42", data-x="4", data-y="2" onclick="myFunction(this)">[<INSERT42>]</button>        
-            <button>
-                <type="button" id="43", data-x="4", data-y="3" onclick="myFunction(this)">[<INSERT43>]</button>
-            <button>
-                <type="button" id="44", data-x="4", data-y="4" onclick="myFunction(this)">[<INSERT44>]</button>
-            <button>
-                <type="button" id="45", data-x="4", data-y="5" onclick="myFunction(this)">[<INSERT45>]</button> 
-            <button>
-                <type="button" id="46", data-x="4", data-y="6" onclick="myFunction(this)">[<INSERT46>]</button>
-            <button>
-                <type="button" id="47", data-x="4", data-y="7" onclick="myFunction(this)">[<INSERT47>]</button>
-            </div>
-             <div>
-            <button>
-                <type="button" id="50", data-x="5", data-y="0" onclick="myFunction(this)">[<INSERT50>]</button>
-            <button>
-                <type="button" id="51", data-x="5", data-y="1" onclick="myFunction(this)">[<INSERT51>]</button>
-            <button>
-                <type="button" id="52", data-x="5", data-y="2" onclick="myFunction(this)">[<INSERT52>]</button>        
-            <button>
-                <type="button" id="53", data-x="5", data-y="3" onclick="myFunction(this)">[<INSERT53>]</button>
-            <button>
-                <type="button" id="54", data-x="5", data-y="4" onclick="myFunction(this)">[<INSERT54>]</button>
-            <button>
-                <type="button" id="55", data-x="5", data-y="5" onclick="myFunction(this)">[<INSERT55>]</button> 
-            <button>
-                <type="button" id="56", data-x="5", data-y="6" onclick="myFunction(this)">[<INSERT56>]</button>
-            <button>
-                <type="button" id="57", data-x="5", data-y="7" onclick="myFunction(this)">[<INSERT57>]</button>
-            </div>
-             <div>
-            <button>
-                <type="button" id="60", data-x="6", data-y="0" onclick="myFunction(this)">[<INSERT60>]</button>
-            <button>
-                <type="button" id="61", data-x="6", data-y="1" onclick="myFunction(this)">[<INSERT61>]</button>
-            <button>
-                <type="button" id="62", data-x="6", data-y="2" onclick="myFunction(this)">[<INSERT62>]</button>        
-            <button>
-                <type="button" id="63", data-x="6", data-y="3" onclick="myFunction(this)">[<INSERT63>]</button>
-            <button>
-                <type="button" id="64", data-x="6", data-y="4" onclick="myFunction(this)">[<INSERT64>]</button>
-            <button>
-                <type="button" id="65", data-x="6", data-y="5" onclick="myFunction(this)">[<INSERT65>]</button> 
-            <button>
-                <type="button" id="66", data-x="6", data-y="6" onclick="myFunction(this)">[<INSERT66>]</button>
-            <button>
-                <type="button" id="67", data-x="6", data-y="7" onclick="myFunction(this)">[<INSERT67>]</button>
-            </div>
-             <div>
-            <button>
-                <type="button" id="70", data-x="7", data-y="0" onclick="myFunction(this)">[<INSERT70>]</button>
-            <button>
-                <type="button" id="71", data-x="7", data-y="1" onclick="myFunction(this)">[<INSERT71>]</button>
-            <button>
-                <type="button" id="72", data-x="7", data-y="2" onclick="myFunction(this)">[<INSERT72>]</button>        
-            <button>
-                <type="button" id="73", data-x="7", data-y="3" onclick="myFunction(this)">[<INSERT73>]</button>
+                <type="button" id="75", data-x="7", data-y="3" onclick="myFunction(this)">[<INSERT73>]</button>
             <button>
                 <type="button" id="74", data-x="7", data-y="4" onclick="myFunction(this)">[<INSERT74>]</button>
             <button>
-                <type="button" id="75", data-x="7", data-y="5" onclick="myFunction(this)">[<INSERT75>]</button> 
+                <type="button" id="73", data-x="7", data-y="5" onclick="myFunction(this)">[<INSERT75>]</button>                    
             <button>
-                <type="button" id="76", data-x="7", data-y="6" onclick="myFunction(this)">[<INSERT76>]</button>
+                <type="button" id="72", data-x="7", data-y="6" onclick="myFunction(this)">[<INSERT76>]</button>
             <button>
-                <type="button" id="77", data-x="7", data-y="7" onclick="myFunction(this)">[<INSERT77>]</button>
+                <type="button" id="71", data-x="7", data-y="7" onclick="myFunction(this)">[<INSERT77>]</button>
             </div>
-                        <script src="/JavaScript.js"></script>
+            <div>
+            <button>
+                <type="button" id="67", data-x="6", data-y="0" onclick="myFunction(this)">[<INSERT60>]</button>
+            <button>
+                <type="button" id="66", data-x="6", data-y="1" onclick="myFunction(this)">[<INSERT61>]</button>
+            <button>
+                <type="button" id="65", data-x="6", data-y="2" onclick="myFunction(this)">[<INSERT62>]</button>        
+            <button>
+                <type="button" id="64", data-x="6", data-y="3" onclick="myFunction(this)">[<INSERT63>]</button>
+            <button>
+                <type="button" id="63", data-x="6", data-y="4" onclick="myFunction(this)">[<INSERT64>]</button>
+            <button>
+                <type="button" id="62", data-x="6", data-y="5" onclick="myFunction(this)">[<INSERT65>]</button> 
+            <button>
+                <type="button" id="61", data-x="6", data-y="6" onclick="myFunction(this)">[<INSERT66>]</button>
+            <button>
+                <type="button" id="60", data-x="6", data-y="7" onclick="myFunction(this)">[<INSERT67>]</button> 
+            </div>
+            <div>
+            <button>
+                <type="button" id="57", data-x="5", data-y="0" onclick="myFunction(this)">[<INSERT50>]</button>
+            <button>
+                <type="button" id="56", data-x="5", data-y="1" onclick="myFunction(this)">[<INSERT51>]</button>
+            <button>
+                <type="button" id="55", data-x="5", data-y="2" onclick="myFunction(this)">[<INSERT52>]</button>        
+            <button>
+                <type="button" id="54", data-x="5", data-y="3" onclick="myFunction(this)">[<INSERT53>]</button>
+            <button>
+                <type="button" id="53", data-x="5", data-y="4" onclick="myFunction(this)">[<INSERT54>]</button>
+            <button>
+                <type="button" id="52", data-x="5", data-y="5" onclick="myFunction(this)">[<INSERT55>]</button> 
+            <button>
+                <type="button" id="51", data-x="5", data-y="6" onclick="myFunction(this)">[<INSERT56>]</button>
+            <button>
+                <type="button" id="50", data-x="5", data-y="7" onclick="myFunction(this)">[<INSERT57>]</button>
+            </div>
+             <div>
+            <button>
+                <type="button" id="47", data-x="4", data-y="0" onclick="myFunction(this)">[<INSERT40>]</button>
+            <button>
+                <type="button" id="46", data-x="4", data-y="1" onclick="myFunction(this)">[<INSERT41>]</button>
+            <button>
+                <type="button" id="45", data-x="4", data-y="2" onclick="myFunction(this)">[<INSERT42>]</button>        
+            <button>
+                <type="button" id="44", data-x="4", data-y="3" onclick="myFunction(this)">[<INSERT43>]</button>
+            <button>
+                <type="button" id="43", data-x="4", data-y="4" onclick="myFunction(this)">[<INSERT44>]</button>
+            <button>
+                <type="button" id="42", data-x="4", data-y="5" onclick="myFunction(this)">[<INSERT45>]</button> 
+            <button>
+                <type="button" id="41", data-x="4", data-y="6" onclick="myFunction(this)">[<INSERT46>]</button>
+            <button>
+                <type="button" id="40", data-x="4", data-y="7" onclick="myFunction(this)">[<INSERT47>]</button>
+            </div>
+             <div>
+            <button>
+                <type="button" id="37", data-x="3", data-y="0" onclick="myFunction(this)">[<INSERT30>]</button>
+            <button>
+                <type="button" id="36", data-x="3", data-y="1" onclick="myFunction(this)">[<INSERT31>]</button>
+            <button>
+                <type="button" id="35", data-x="3", data-y="2" onclick="myFunction(this)">[<INSERT32>]</button>        
+            <button>
+                <type="button" id="34", data-x="3", data-y="3" onclick="myFunction(this)">[<INSERT33>]</button>
+            <button>
+                <type="button" id="33", data-x="3", data-y="4" onclick="myFunction(this)">[<INSERT34>]</button>
+            <button>
+                <type="button" id="32", data-x="3", data-y="5" onclick="myFunction(this)">[<INSERT35>]</button> 
+            <button>
+                <type="button" id="31", data-x="3", data-y="6" onclick="myFunction(this)">[<INSERT36>]</button>
+            <button>
+                <type="button" id="30", data-x="3", data-y="7" onclick="myFunction(this)">[<INSERT37>]</button>
+            </div>
+             <div>
+            <button>
+                <type="button" id="27", data-x="2", data-y="0" onclick="myFunction(this)">[<INSERT20>]</button>
+            <button>
+                <type="button" id="26", data-x="2", data-y="1" onclick="myFunction(this)">[<INSERT21>]</button>
+            <button>
+                <type="button" id="25", data-x="2", data-y="2" onclick="myFunction(this)">[<INSERT22>]</button>        
+            <button>
+                <type="button" id="24", data-x="2", data-y="3" onclick="myFunction(this)">[<INSERT23>]</button>
+            <button>
+                <type="button" id="23", data-x="2", data-y="4" onclick="myFunction(this)">[<INSERT24>]</button>
+            <button>
+                <type="button" id="22", data-x="2", data-y="5" onclick="myFunction(this)">[<INSERT25>]</button> 
+            <button>
+                <type="button" id="21", data-x="2", data-y="6" onclick="myFunction(this)">[<INSERT26>]</button>
+            <button>
+                <type="button" id="20", data-x="2", data-y="7" onclick="myFunction(this)">[<INSERT27>]</button>
+            </div>
+             <div>
+            <button>
+                <type="button" id="17", data-x="1", data-y="0" onclick="myFunction(this)">[<INSERT10>]</button>
+            <button>
+                <type="button" id="16", data-x="1", data-y="1" onclick="myFunction(this)">[<INSERT11>]</button>
+            <button>
+                <type="button" id="15", data-x="1", data-y="2" onclick="myFunction(this)">[<INSERT12>]</button>        
+            <button>
+                <type="button" id="14", data-x="1", data-y="3" onclick="myFunction(this)">[<INSERT13>]</button>
+            <button>
+                <type="button" id="13", data-x="1", data-y="4" onclick="myFunction(this)">[<INSERT14>]</button>
+            <button>
+                <type="button" id="12", data-x="1", data-y="5" onclick="myFunction(this)">[<INSERT15>]</button> 
+            <button>
+                <type="button" id="11", data-x="1", data-y="6" onclick="myFunction(this)">[<INSERT16>]</button>
+            <button>
+                <type="button" id="10", data-x="1", data-y="7" onclick="myFunction(this)">[<INSERT17>]</button>
+            </div>
+             <div>
+            <button>
+                <type="button" id="07", data-x="0", data-y="0" onclick="myFunction(this)">[<INSERT00>]</button>
+            <button>
+                <type="button" id="06", data-x="0", data-y="1" onclick="myFunction(this)">[<INSERT01>]</button>
+            <button>
+                <type="button" id="05", data-x="0", data-y="2" onclick="myFunction(this)">[<INSERT02>]</button>        
+            <button>
+                <type="button" id="04", data-x="0", data-y="3" onclick="myFunction(this)">[<INSERT03>]</button>
+            <button>
+                <type="button" id="03", data-x="0", data-y="4" onclick="myFunction(this)">[<INSERT04>]</button>
+            <button>
+                <type="button" id="02", data-x="0", data-y="5" onclick="myFunction(this)">[<INSERT05>]</button> 
+            <button>
+                <type="button" id="01", data-x="0", data-y="6" onclick="myFunction(this)">[<INSERT06>]</button>
+            <button>
+                <type="button" id="00", data-x="0", data-y="7" onclick="myFunction(this)">[<INSERT07>]</button>
+            </div>
+                        
+                        
                    
             </div>""";
 
@@ -396,10 +399,67 @@ public class PageRenderer {
         game.setStartY(10);
 
         BOARD = renderBoard;
-        return renderBoard;
+
+        return renderBoard + ("<div> <a href= \"http://192.168.1.15/Login/leaveGame\">Leave Game</a> </div>");
+
     }
 
-    public String renderBoard() {
+    public String refreshBoard(InitialiseGame game) {
+
+        char[][] board = game.getBoard();
+
+        BOARD = NEWBOARD;
+
+        String renderBoard = BOARD;
+
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                if (board[i][j] != ' ') {
+                    String object = String.valueOf(board[i][j]);
+                    virtualBoard[i][j] = board[i][j];
+                    renderBoard = BOARD.replace("<INSERT" + i + j + ">", object);
+                    BOARD = renderBoard;
+                }
+            }
+        }
+        BOARD = renderBoard;
+
+        return renderBoard;
+
+    }
+
+
+    public String renderBoard(int counter, InitialiseGame game, Player player) {
+
+        if (game.getCurrentTurn() != player) {
+            return BOARD + ("<div> <a href= \"http://192.168.1.15/Login/leaveGame\">Leave Game</a> </div>") + ("<div>" + "It's not your turn" + "</div>");
+        }
+
+        if (counter == 2) {
+            if (game.getCheck()) {
+                return BOARD + ("<div> <a href= \"http://192.168.1.15/Login/leaveGame\">Leave Game</a> </div>") + ("<div>" + "You are in Check, this move cannot be made, try another move" + "</div>");
+            } else {
+                return BOARD + ("<div> <a href= \"http://192.168.1.15/Login/leaveGame\">Leave Game</a> </div>") + ("<div>" + "This move can't be played, try another move" + "</div>");
+            }
+        }
+        if (counter == 1) {
+            return BOARD + ("<div> <a href= \"http://192.168.1.15/Login/leaveGame\">Leave Game</a> </div>") + ("<div>" + "Make your move" + "</div>");
+        }
+
+        return BOARD + ("<div> <a href= \"http://192.168.1.15/Login/leaveGame\">Leave Game</a> </div>");
+    }
+
+    public String renderPlayerLeftBoard(Player player) {
+
+        if (player.winner) {
+            return "<div>" + "You win!" + "</div>" + "<div>" + "<a href=http://192.168.1.15//Login?name=" + player.name + ">" + "Return to homepage </a> </div>";
+        }
+        return "<div>" + "You lose!" + "</div>" + "<div>" + "<a href=http://192.168.1.15//Login?name=" + player.name + ">" + "Return to homepage </a> </div>";
+
+
+    }
+
+    public String renderGameOver(Player player) {
         return BOARD;
     }
 

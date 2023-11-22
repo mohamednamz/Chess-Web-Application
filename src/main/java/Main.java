@@ -55,5 +55,6 @@ public class Main {
         get("/Login/JoinGame", new JoinGameController(playerInterface, pageRenderer, server));
         get("/makeMove", makeMoveController);
         get("/render", new refreshBoardController(playerInterface,server,pageRenderer));
+        get("/Login/leaveGame", new LeaveGameController(playerInterface,pageRenderer,server));
     }
 }

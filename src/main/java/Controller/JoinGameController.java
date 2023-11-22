@@ -25,13 +25,15 @@ public class JoinGameController implements Route {
     @Override
     public Object handle(Request request, Response response) throws Exception {
 
+        int counter = 0;
+
         String playerName = request.cookie("name");
 
         Player player = playerInterface.getPlayer(playerName);
 
         if (player.isInGame) {
             InitialiseGame game = server.getGame(player);
-            return pageRenderer.renderBoard(); //TODO i need to put a isGameOver in the game.
+            return pageRenderer.renderNewBoard(game); //TODO i need to put a isGameOver in the game.
 
         }
 

@@ -9,18 +9,19 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
-public class refreshBoardController implements Route {
+public class LeaveGameController implements Route {
 
     PlayerInterface playerInterface;
-    Server server;
+
     PageRenderer pageRenderer;
 
-    public refreshBoardController(PlayerInterface playerInterface, Server server, PageRenderer pageRenderer) {
-        this.playerInterface = playerInterface;
+    Server server;
+
+    public LeaveGameController(PlayerInterface playerInterface, PageRenderer pageRenderer, Server server) {
         this.server = server;
         this.pageRenderer = pageRenderer;
+        this.playerInterface = playerInterface;
     }
-
 
     @Override
     public Object handle(Request request, Response response) throws Exception {
@@ -31,9 +32,13 @@ public class refreshBoardController implements Route {
 
         InitialiseGame game = server.getGame(player);
 
-        if (!player.isInGame) {
-            return pageRenderer.renderPlayerLeftBoard(player);
+        if (game == null) {
+            return pageRenderer.renderGameOver(player);
         }
-        return pageRenderer.refreshBoard(game);
+
+        player = server.leaveGame(player);
+
+        return pageRenderer.renderPlayerLeftBoard(player);
+
     }
 }

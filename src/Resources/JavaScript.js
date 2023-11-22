@@ -8,6 +8,8 @@ async function refresh() {
 
    document.getElementById("board").innerHTML = await response.text();
 
+   //how to cancel or suspend a fetch.
+
    console.log("boy");
 
 }

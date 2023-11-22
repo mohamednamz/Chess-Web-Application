@@ -49,12 +49,20 @@ public class Game {
         return this.check;
     }
 
+    public Player getCurrentTurn() {
+        return currentTurn;
+    }
+
     public boolean isGameOver(boolean gameOver) {
         return this.gameOver = gameOver;
     }
 
     public boolean getIsGameOver() {
         return this.gameOver;
+    }
+
+    public void SetGameOver(boolean setGameOver) {
+        this.gameOver = setGameOver;
     }
 
     public char[][] virtualBoard = {
@@ -77,6 +85,7 @@ public class Game {
         movesPlayedd = new Stack<>();
 
         p1.setIsWhiteSide(true);
+        p2.setIsWhiteSide(false);
 
         players[0] = p1;
         players[1] = p2;
@@ -181,6 +190,32 @@ public class Game {
         }
 
         if (sourcePiece instanceof King) {
+
+            Piece start = move.getStart().getPiece();
+
+            move.getEnd().setPiece(move.getStart().getPiece());
+            move.getStart().setPiece(null);
+
+            if (willKingBeInCheck(sourcePiece, move)) {
+                move.getStart().setPiece(start);
+                move.getEnd().setPiece(null);
+                if (sourcePiece.isWhite()) {
+                    mostRecentWhiteKingMove = king;
+                } else {
+                    mostRecentBlackKingMove = king;
+                }
+                printCheck();
+                return false;
+            }
+
+            move.getStart().setPiece(start);
+            move.getEnd().setPiece(null);
+            if (sourcePiece.isWhite()) {
+                mostRecentWhiteKingMove = king;
+            } else {
+                mostRecentBlackKingMove = king;
+            }
+
             if (sourcePiece.isWhite()) {
                 king = mostRecentWhiteKingMove;
                 mostRecentWhiteKingMove = move;
@@ -220,6 +255,7 @@ public class Game {
             if (sourcePiece.isWhite()) {
                 if (isCheckMate(mostRecentBlackKingMove, move)) {
                     if (getIsGameOver()) {
+                        player.winner = true;
                         printGameOver();
                         return false;
                     }
@@ -227,6 +263,7 @@ public class Game {
                 if (!sourcePiece.isWhite()) {
                     if (isCheckMate(mostRecentWhiteKingMove, move)) {
                         if (getIsGameOver()) {
+                            player.winner = true;
                             printGameOver();
                             return false;
                         }
@@ -271,11 +308,7 @@ public class Game {
                 }
             }
         }
-
-
-
         return true;
-
     }
 
     private void print(Piece sourcePiece, Move move) {
@@ -304,6 +337,25 @@ public class Game {
         System.out.println("This move can't be played");
     }
 
+    private boolean willKingBeInCheck(Piece piece, Move move) {
+
+        int counterOne = 0;
+        int counterTwo = 0;
+        int counterThree = 0;
+        int counterFour = 0;
+
+        if (piece != null) {
+            if (move != null) {
+                counterOne = checkDiagonal(move);
+                counterTwo = checkVerticalAndHorizontal(move);
+                counterThree = checkKnight(move);
+                counterFour = checkPawn(move);
+            }
+        }
+        return counterOne > 0 || counterTwo > 0 || counterThree > 0 || counterFour > 0;
+    }
+
+
     private void isCheck(Move move, Piece piece) {
 
         int counterOne = 0;
@@ -314,34 +366,34 @@ public class Game {
         if (piece != null) {
             if (piece.isWhite()) {
                 if (mostRecentBlackKingMove != null) {
-                    if (piece instanceof Queen || piece instanceof Bishop) {
-                        counterOne = checkDiagonal(mostRecentBlackKingMove);
-                    }
-                    if (piece instanceof Castle) {
-                        counterTwo = checkVerticalAndHorizontal(mostRecentBlackKingMove);
-                    }
-                    if (piece instanceof Knight) {
-                        counterThree = checkKnight(mostRecentBlackKingMove);
-                    }
-                    if (piece instanceof Pawn) {
-                        counterFour = checkPawn(mostRecentBlackKingMove);
-                    }
+                    //if (piece instanceof Queen || piece instanceof Bishop) {
+                    counterOne = checkDiagonal(mostRecentBlackKingMove);
+                    //}
+                    //if (piece instanceof Castle) {
+                    counterTwo = checkVerticalAndHorizontal(mostRecentBlackKingMove);
+                    // }
+                    //if (piece instanceof Knight) {
+                    counterThree = checkKnight(mostRecentBlackKingMove);
+                    //}
+                    //if (piece instanceof Pawn) {
+                    counterFour = checkPawn(mostRecentBlackKingMove);
+                    //}
                 }
             } else {
                 if (mostRecentWhiteKingMove != null) {
-                    if (piece instanceof Queen || piece instanceof Bishop) {
-                        counterOne = checkDiagonal(mostRecentBlackKingMove);
-                    }
-                    if (piece instanceof Castle) {
-                        counterTwo = checkVerticalAndHorizontal(mostRecentBlackKingMove);
-                    }
-                    if (piece instanceof Knight) {
-                        counterThree = checkKnight(mostRecentBlackKingMove);
-                    }
-                    if (piece instanceof Pawn) {
-                        counterFour = checkPawn(mostRecentBlackKingMove);
-                    }
+                    //if (piece instanceof Queen || piece instanceof Bishop) {
+                    counterOne = checkDiagonal(mostRecentBlackKingMove);
+                    //}
+                    //if (piece instanceof Castle) {
+                    counterTwo = checkVerticalAndHorizontal(mostRecentBlackKingMove);
+                    //}
+                    //if (piece instanceof Knight) {
+                    counterThree = checkKnight(mostRecentBlackKingMove);
                 }
+                //if (piece instanceof Pawn) {
+                counterFour = checkPawn(mostRecentBlackKingMove);
+                //}
+                //}
             }
         }
 
@@ -484,6 +536,10 @@ public class Game {
                 isGameOver(true);
                 return true;
             }
+
+            if (finalCounter + counterFive < 0) {
+                isCheck(true);
+            }
         }
         return false;
     }
@@ -535,45 +591,72 @@ public class Game {
     private int checkVerticalAndHorizontal(Move move) {
 
         int counter = 0;
+        int counterTwo = 0;
         int x = move.getEnd().getX();
         int j = move.getEnd().getY();
 
+        //todo stop king being checked by its own piece - this is only for when im moving the king so it knows whether it's moving into check or not - new behaviour i'm putting in - if i remove it it works as normal - but i dont want my king to walk into check.
+        //todo still broken
 
         boolean pieceInBetween = false;
-
+//verical
         for (int y = 0; y < 8; y++) {
+            if (y > j && pieceInBetween) {
+                break;
+            }
             if (board.boxes[x][y].getPiece() != null) {
                 Piece piece = board.boxes[x][y].getPiece();
+
                 if (piece instanceof Queen || piece instanceof Castle) {
-                    counter++;
-                    pieceInBetween = false;
-                } else if (board.boxes[x][y].getPiece() == move.getEnd().getPiece()) {
-                    break;
+                    if (piece.isWhite() != move.getEnd().getPiece().isWhite()) {
+                        counter++;
+                        //pieceInBetween = false;
+                    }
+//                } else if (board.boxes[x][y].getPiece() == move.getEnd().getPiece()) {
+//                    break;
                 } else {
-                    pieceInBetween = true;
+                    if (counter == 0) {
+                        if (y < j) {
+                            pieceInBetween = true;
+                        }
+                    } else {
+                        pieceInBetween = false;
+                    }
                 }
             }
         }
 
         for (int z = 0; z < 8; z++) {
+            if (z > x && pieceInBetween) {
+                break;
+            }
             if (board.boxes[z][j].getPiece() != null) {
                 Piece piece = board.boxes[z][j].getPiece();
                 if (piece instanceof Queen || piece instanceof Castle) {
-                    counter++;
-                    pieceInBetween = false;
-                } else if (board.boxes[z][j].getPiece() == move.getEnd().getPiece()) {
-                    break;
+                    if (piece.isWhite() != move.getEnd().getPiece().isWhite()) {
+                        counterTwo++;
+                        //pieceInBetween = false;
+                    }
+//                } else if (board.boxes[z][j].getPiece() == move.getEnd().getPiece()) {
+//                    break;
                 } else {
-                    pieceInBetween = true;
+                    if (counterTwo == 0) {
+                        if (z > x) {
+                            pieceInBetween = true;
+                        }
+                    } else {
+                        pieceInBetween = false;
+                    }
                 }
             }
         }
 
         if (pieceInBetween) {
             counter = 0;
+            counterTwo = 0;
         }
 
-        return counter;
+        return counter + counterTwo;
     }
 
     private int checkDiagonal(Move move) {
@@ -597,8 +680,9 @@ public class Game {
 
         while (breakPoint < 8) {
             if (z < 8 && y < 8) {
-                if (board.boxes[z][y].getPiece() != null) {
+                if (board.boxes[z][y].getPiece() != null && move.getEnd().getPiece() != null) {
                     Piece piece = board.boxes[z][y].getPiece();
+                    //not null for move.getEnd
                     if (piece.isWhite() != move.getEnd().getPiece().isWhite()) {
                         if (!isThereAPieceInBetween) {
                             if (piece instanceof Queen || piece instanceof Bishop) {
@@ -613,7 +697,7 @@ public class Game {
                 }
             }
             if (z < 8 && j >= 0) {
-                if (board.boxes[z][j].getPiece() != null) {
+                if (board.boxes[z][j].getPiece() != null && move.getEnd().getPiece() != null) {
                     Piece piece = board.boxes[z][j].getPiece();
                     if (piece.isWhite() != move.getEnd().getPiece().isWhite()) {
                         if (!isThereAPieceInBetweenOne) {
@@ -629,7 +713,7 @@ public class Game {
                 }
             }
             if (x >= 0 && y < 8) {
-                if (board.boxes[x][y].getPiece() != null) {
+                if (board.boxes[x][y].getPiece() != null && move.getEnd().getPiece() != null) {
                     Piece piece = board.boxes[x][y].getPiece();
                     if (piece.isWhite() != move.getEnd().getPiece().isWhite()) {
                         if (!isThereAPieceInBetweenTwo) {
@@ -645,7 +729,7 @@ public class Game {
                 }
             }
             if (x >= 0 && j >= 0) {
-                if (board.boxes[x][j].getPiece() != null) {
+                if (board.boxes[x][j].getPiece() != null && move.getEnd().getPiece() != null) {
                     Piece piece = board.boxes[x][j].getPiece();
                     if (piece.isWhite() != move.getEnd().getPiece().isWhite()) {
                         if (!isThereAPieceInBetweenThree) {

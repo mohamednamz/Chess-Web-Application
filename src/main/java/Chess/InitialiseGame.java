@@ -1,5 +1,7 @@
 package Chess;
 
+import java.security.PublicKey;
+
 public class InitialiseGame {
     Player playerOne;
     Player playerTwo;
@@ -29,6 +31,14 @@ public class InitialiseGame {
         return startY;
     }
 
+    public Player getPlayerOne() {
+        return playerOne;
+    }
+
+    public Player getPlayerTwo() {
+        return playerTwo;
+    }
+
     public void setStartX(int startX) {
         this.startX = startX;
     }
@@ -40,8 +50,23 @@ public class InitialiseGame {
         return chessMatch.getMostRecentMove().getPieceMoved();
     }
 
+    public boolean getCheck() {
+        return chessMatch.getCheck();
+    }
+
     public char[][] getBoard() {
        return chessMatch.virtualBoard;
+    }
+
+    public Player getCurrentTurn() {
+       return chessMatch.getCurrentTurn();
+    }
+
+    public boolean getIsGameOver() {
+        return chessMatch.getIsGameOver();
+    }
+    public void SetGameOver(boolean setGameOver) {
+        chessMatch.SetGameOver(setGameOver);
     }
 
 }

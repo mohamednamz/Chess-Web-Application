@@ -25,6 +25,7 @@ public class MakeMoveController implements Route {
 
         int endX = 0;
         int endY = 0;
+        int counter = 0;
 
         String playerName = request.cookie("name");
 
@@ -32,11 +33,15 @@ public class MakeMoveController implements Route {
 
         InitialiseGame game = server.getGame(player);
 
+        if (server.getGame(player).getPlayerOne() == null || server.getGame(player).getPlayerTwo() == null) {
+            pageRenderer.renderBoard(counter, game, player);
+        }
+
         if (game.getStartX() == 10 && game.getStartY() == 10) {
             game.setStartX(Integer.parseInt(request.queryParams("x")));
             game.setStartY(Integer.parseInt(request.queryParams("y")));
-
-            return pageRenderer.renderBoard();
+            counter++;
+            return pageRenderer.renderBoard(counter, game, player);
         } else {
             endX = Integer.parseInt(request.queryParams("x"));
             endY = Integer.parseInt(request.queryParams("y"));
@@ -49,6 +54,8 @@ public class MakeMoveController implements Route {
         game.setStartX(10);
         game.setStartY(10);
 
-        return null;
+        counter = counter + 2;
+
+        return pageRenderer.renderBoard(counter, game, player);
     }
 }
