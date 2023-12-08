@@ -7,7 +7,8 @@ import static spark.Spark.*;
 public class Main {
 
     public static void setUpServer() {
-        staticFiles.externalLocation("C:\\Users\\User\\Documents\\Coding Umar\\Teaching-main\\Chess-Web-Application\\src\\Resources");
+        //staticFiles.externalLocation("C:\\Users\\User\\Documents\\Coding Umar\\Teaching-main\\Chess-Web-Application\\src\\Resources");
+        staticFiles.location("/public"); // Static files
         port(80);
 
         exception(Exception.class, (exception, request, response) -> {
