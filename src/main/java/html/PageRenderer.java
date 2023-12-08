@@ -400,7 +400,7 @@ public class PageRenderer {
 
         BOARD = renderBoard;
 
-        return renderBoard + ("<div> <a href= \"http://192.168.1.15/Login/leaveGame\">Leave Game</a> </div>");
+        return renderBoard + ("<div> <a href= \"http://3.11.80.128/Login/leaveGame\">Leave Game</a> </div>");
 
     }
 
@@ -432,29 +432,29 @@ public class PageRenderer {
     public String renderBoard(int counter, InitialiseGame game, Player player) {
 
         if (game.getCurrentTurn() != player) {
-            return BOARD + ("<div> <a href= \"http://192.168.1.15/Login/leaveGame\">Leave Game</a> </div>") + ("<div>" + "It's not your turn" + "</div>");
+            return BOARD + ("<div> <a href= \"http://3.11.80.128/Login/leaveGame\">Leave Game</a> </div>") + ("<div>" + "It's not your turn" + "</div>");
         }
 
         if (counter == 2) {
             if (game.getCheck()) {
-                return BOARD + ("<div> <a href= \"http://192.168.1.15/Login/leaveGame\">Leave Game</a> </div>") + ("<div>" + "You are in Check, this move cannot be made, try another move" + "</div>");
+                return BOARD + ("<div> <a href= \"http://3.11.80.128/Login/leaveGame\">Leave Game</a> </div>") + ("<div>" + "You are in Check, this move cannot be made, try another move" + "</div>");
             } else {
-                return BOARD + ("<div> <a href= \"http://192.168.1.15/Login/leaveGame\">Leave Game</a> </div>") + ("<div>" + "This move can't be played, try another move" + "</div>");
+                return BOARD + ("<div> <a href= \"http://3.11.80.128/Login/leaveGame\">Leave Game</a> </div>") + ("<div>" + "This move can't be played, try another move" + "</div>");
             }
         }
         if (counter == 1) {
-            return BOARD + ("<div> <a href= \"http://192.168.1.15/Login/leaveGame\">Leave Game</a> </div>") + ("<div>" + "Make your move" + "</div>");
+            return BOARD + ("<div> <a href= \"http://3.11.80.128/Login/leaveGame\">Leave Game</a> </div>") + ("<div>" + "Make your move" + "</div>");
         }
 
-        return BOARD + ("<div> <a href= \"http://192.168.1.15/Login/leaveGame\">Leave Game</a> </div>");
+        return BOARD + ("<div> <a href= \"http://3.11.80.128/Login/leaveGame\">Leave Game</a> </div>");
     }
 
     public String renderPlayerLeftBoard(Player player) {
 
         if (player.winner) {
-            return "<div>" + "You win!" + "</div>" + "<div>" + "<a href=http://192.168.1.15//Login?name=" + player.name + ">" + "Return to homepage </a> </div>";
+            return "<div>" + "You win!" + "</div>" + "<div>" + "<a href=http://3.11.80.128//Login?name=" + player.name + ">" + "Return to homepage </a> </div>";
         }
-        return "<div>" + "You lose!" + "</div>" + "<div>" + "<a href=http://192.168.1.15//Login?name=" + player.name + ">" + "Return to homepage </a> </div>";
+        return "<div>" + "You lose!" + "</div>" + "<div>" + "<a href=http://3.11.80.128//Login?name=" + player.name + ">" + "Return to homepage </a> </div>";
 
 
     }
@@ -503,7 +503,7 @@ public class PageRenderer {
 
         for (int i = 0; i < listOfRoutes.size(); i++) {
 
-            CARD_HTML += "<a href=\"http://192.168.1.15/" + listOfRoutes.get(i).getRoute() + "\">" + listOfRoutes.get(i).getRouteName() + "</a>";
+            CARD_HTML += "<a href=\"http://3.11.80.128/" + listOfRoutes.get(i).getRoute() + "\">" + listOfRoutes.get(i).getRouteName() + "</a>";
             CARD_HTML += "</div>";
             CARD_HTML += "<div>";
         }
